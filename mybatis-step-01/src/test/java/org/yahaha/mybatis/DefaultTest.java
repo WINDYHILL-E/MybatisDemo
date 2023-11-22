@@ -4,15 +4,16 @@ import com.alibaba.fastjson.JSON;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.yahaha.mybatis.binding.MapperProxyFactory;
+import org.yahaha.mybatis.binding.MapperRegistry;
 import org.yahaha.mybatis.dao.UserDao;
 import org.yahaha.mybatis.dao.impl.UserDaoImpl;
+import org.yahaha.mybatis.session.SqlSession;
+import org.yahaha.mybatis.session.SqlSessionFactory;
+import org.yahaha.mybatis.session.defaults.DefaultSqlSessionFactory;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
-import java.util.HashMap;
-import java.util.Map;
 
 public class DefaultTest {
 
@@ -40,17 +41,25 @@ public class DefaultTest {
                 });
 
         String s = userDao.queryUsername(1);
-        System.out.println(s);
+        logger.info(s);
     }
 
     @Test
-    public void testMapperProxy() {
-        Map<String, String> sqlSession = new HashMap<>();
-        sqlSession.put("org.yahaha.mybatis.dao.UserDao.queryUsername","select * from db;");
-        MapperProxyFactory<UserDao> userDaoMapperProxyFactory = new MapperProxyFactory<>(UserDao.class);
-        UserDao userDao = userDaoMapperProxyFactory.newProxyInstance(sqlSession);
+    public void testSqlSession() {
+        // 1.注册mapper
+        MapperRegistry registry = new MapperRegistry();
+        registry.addMappers("org.yahaha.mybatis.dao");
+
+        // 2.创建sqlSession工厂，获取sqlSession
+        SqlSessionFactory sqlSessionFactory = new DefaultSqlSessionFactory(registry);
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+
+        // 3.获取mapper代理实例
+        UserDao userDao = sqlSession.getMapper(UserDao.class);
+
+        // 4.检验结果
         String s = userDao.queryUsername(1);
-        System.out.println(s);
+        logger.info(s);
     }
 
 }
