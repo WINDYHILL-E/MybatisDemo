@@ -1,18 +1,24 @@
 package org.yahaha.mybatis.binding;
 
-import java.lang.reflect.Proxy;
-import java.util.Map;
+import org.yahaha.mybatis.session.SqlSession;
 
+import java.lang.reflect.Proxy;
+
+/**
+ * 这是创建映射代理类的工厂
+ *
+ * @param <T>
+ */
 public class MapperProxyFactory<T> {
 
-    private Class<T> mapperInterface;
+    private final Class<T> mapperInterface;
 
     public MapperProxyFactory(Class<T> mapperInterface) {
         this.mapperInterface = mapperInterface;
     }
 
-    public T newProxyInstance(Map<String, String> sqlSession) {
-        final MapperProxy<T> mapperProxy = new MapperProxy<>(sqlSession, mapperInterface);
+    public T newInstance(SqlSession sqlSession) {
+        MapperProxy<T> mapperProxy = new MapperProxy<>(sqlSession, mapperInterface);
         return (T) Proxy.newProxyInstance(mapperInterface.getClassLoader(), new Class[]{mapperInterface}, mapperProxy);
     }
 }
