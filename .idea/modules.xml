@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/MybatisDemo.iml" filepath="$PROJECT_DIR$/MybatisDemo.iml" />
       <module fileurl="file://$PROJECT_DIR$/mybatis-step-00/mybatis-step-00.iml" filepath="$PROJECT_DIR$/mybatis-step-00/mybatis-step-00.iml" />
       <module fileurl="file://$PROJECT_DIR$/mybatis-step-01/mybatis-step-01.iml" filepath="$PROJECT_DIR$/mybatis-step-01/mybatis-step-01.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mybatis-step-02/mybatis-step-02.iml" filepath="$PROJECT_DIR$/mybatis-step-02/mybatis-step-02.iml" />
     </modules>
   </component>
 </project>
