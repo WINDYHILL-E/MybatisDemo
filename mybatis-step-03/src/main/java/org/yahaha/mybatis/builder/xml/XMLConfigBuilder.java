@@ -93,7 +93,7 @@ public class XMLConfigBuilder extends BaseBuilder {
                 SqlCommandType sqlCommandType = SqlCommandType.valueOf(nodeName.toUpperCase(Locale.ENGLISH));
                 MappedStatement mappedStatement = new MappedStatement.Build(configuration, msId, sqlCommandType, parameterType, resultType, sql, parameter).build();
 
-                configuration.addMappedStatement(mappedStatement);;
+                configuration.addMappedStatement(mappedStatement);
             }
             // 从之前的包扫描，变成读取xml后根据namespace添加
             configuration.addMapper(Resources.classForName(namespace));
