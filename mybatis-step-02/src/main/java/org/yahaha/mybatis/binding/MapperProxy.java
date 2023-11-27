@@ -5,13 +5,13 @@ import org.yahaha.mybatis.session.SqlSession;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 
-public class MapperProxy implements InvocationHandler {
+public class MapperProxy<T> implements InvocationHandler {
 
     private final SqlSession sqlSession;
 
-    private final Class<?> mapperInterface;
+    private final Class<T> mapperInterface;
 
-    public MapperProxy(SqlSession sqlSession, Class<?> mapperInterface) {
+    public MapperProxy(SqlSession sqlSession, Class<T> mapperInterface) {
         this.sqlSession = sqlSession;
         this.mapperInterface = mapperInterface;
     }

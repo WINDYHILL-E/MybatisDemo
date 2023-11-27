@@ -1,6 +1,7 @@
 package org.yahaha.mybatis.binding;
 
 import cn.hutool.core.lang.ClassScanner;
+import org.yahaha.mybatis.session.Configuration;
 import org.yahaha.mybatis.session.SqlSession;
 
 import java.util.HashMap;
@@ -8,6 +9,12 @@ import java.util.Map;
 import java.util.Set;
 
 public class MapperRegistry {
+
+    private Configuration config;
+
+    public MapperRegistry(Configuration config) {
+        this.config = config;
+    }
 
     private final Map<Class<?>, MapperProxyFactory<?>> knownMappers = new HashMap<>();
 
@@ -27,7 +34,7 @@ public class MapperRegistry {
         }
     }
 
-    private <T> boolean hasMapper(Class<T> type) {
+    public <T> boolean hasMapper(Class<T> type) {
         return knownMappers.containsKey(type);
     }
 
