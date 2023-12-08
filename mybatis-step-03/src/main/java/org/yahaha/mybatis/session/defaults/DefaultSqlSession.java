@@ -19,7 +19,6 @@ public class DefaultSqlSession implements SqlSession {
 
     @Override
     public <T> T selectOne(String statement, Object parameter) {
-        // TODO 这里传的msId有点不一样，按理说该是namespace + methodName
         MappedStatement mappedStatement = configuration.getMappedStatement(statement);
         return (T) ("你被代理了！" + "\n方法：" + statement + "\n入参：" + parameter + "\n待执行SQL：" + mappedStatement.getSql());
     }
