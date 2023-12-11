@@ -7,7 +7,6 @@ import org.dom4j.io.SAXReader;
 import org.xml.sax.InputSource;
 import org.yahaha.mybatis.builder.BaseBuilder;
 import org.yahaha.mybatis.datasource.DataSourceFactory;
-import org.yahaha.mybatis.datasource.druid.DruidDataSourceFactory;
 import org.yahaha.mybatis.io.Resources;
 import org.yahaha.mybatis.mapping.BoundSql;
 import org.yahaha.mybatis.mapping.Environment;
