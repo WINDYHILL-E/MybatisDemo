@@ -1,6 +1,7 @@
 package org.yahaha.mybatis.session;
 
 import org.yahaha.mybatis.builder.xml.XMLConfigBuilder;
+import org.yahaha.mybatis.session.defaults.DefaultSqlSessionFactory;
 
 import java.io.Reader;
 
