@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="mybatis-step-06" />
         <module name="mybatis-step-05" />
+        <module name="mybatis-step-07" />
         <module name="mybatis-step-02" />
         <module name="mybatis-step-01" />
         <module name="mybatis-step-04" />
@@ -23,6 +24,7 @@
       <module name="mybatis-step-04" target="1.8" />
       <module name="mybatis-step-05" target="1.8" />
       <module name="mybatis-step-06" target="1.8" />
+      <module name="mybatis-step-07" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

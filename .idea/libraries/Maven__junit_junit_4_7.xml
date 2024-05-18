@@ -1,13 +1,13 @@
 <component name="libraryTable">
   <library name="Maven: junit:junit:4.7">
     <CLASSES>
-      <root url="jar://D:/Program Files/apache-maven-3.6.3/localRepository/junit/junit/4.7/junit-4.7.jar!/" />
+      <root url="jar://$USER_HOME$/usr/local/apache-maven-3.6.3/repo/junit/junit/4.7/junit-4.7.jar!/" />
     </CLASSES>
     <JAVADOC>
-      <root url="jar://D:/Program Files/apache-maven-3.6.3/localRepository/junit/junit/4.7/junit-4.7-javadoc.jar!/" />
+      <root url="jar://$USER_HOME$/usr/local/apache-maven-3.6.3/repo/junit/junit/4.7/junit-4.7-javadoc.jar!/" />
     </JAVADOC>
     <SOURCES>
-      <root url="jar://D:/Program Files/apache-maven-3.6.3/localRepository/junit/junit/4.7/junit-4.7-sources.jar!/" />
+      <root url="jar://$USER_HOME$/usr/local/apache-maven-3.6.3/repo/junit/junit/4.7/junit-4.7-sources.jar!/" />
     </SOURCES>
   </library>
 </component>
