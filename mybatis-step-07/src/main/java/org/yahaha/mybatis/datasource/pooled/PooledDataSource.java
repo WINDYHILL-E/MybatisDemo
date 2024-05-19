@@ -27,15 +27,11 @@ public class PooledDataSource implements DataSource {
     protected int poolMaximumCheckoutTime = 20000;
     // 这是给连接池一个打印日志状态机会的低层次设置,还有重新 尝试获得连接, 这些情况下往往需要很长时间 为了避免连接池没有配置时静默失 败)。
     protected int poolTimeToWait = 20000;
-    /**
-     * 发送到数据库的侦测查询,用来验证连接是否正常工作,并且准备 接受请求。默认是“NO PING QUERY SET” ,这会引起许多数据库驱动连接由一 个错误信息而导致失败
-     */
+    // 发送到数据的侦测查询,用来验证连接是否正常工作,并且准备 接受请求。默认是“NO PING QUERY SET” ,这会引起许多数据库驱动连接由一 个错误信息而导致失败
     protected String poolPingQuery = "NO PING QUERY SET";
     // 开启或禁用侦测查询
     protected boolean poolPingEnabled = false;
-    /**
-     * 用来配置 poolPingQuery 多次时间被用一次
-     */
+    // 用来配置 poolPingQuery 多次时间被用一次
     protected int poolPingConnectionsNotUsedFor = 0;
 
     private int expectedConnectionTypeCode;
@@ -218,19 +214,16 @@ public class PooledDataSource implements DataSource {
         boolean result = true;
 
         try {
-            // 连接已经关闭了，肯定ping不通
             result = !conn.getRealConnection().isClosed();
         } catch (SQLException e) {
             logger.info("Connection " + conn.getRealHashCode() + " is BAD: " + e.getMessage());
-            // 抛出异常也算ping不通
             result = false;
         }
 
         if (result) {
             if (poolPingEnabled) {
-                if (poolPingConnectionsNotUsedFor >= 0 && (conn.getTimeElapsedSinceLastUse() > poolPingConnectionsNotUsedFor)) {
+                if (poolPingConnectionsNotUsedFor >= 0 && conn.getTimeElapsedSinceLastUse() > poolPingConnectionsNotUsedFor) {
                     try {
-                        // 这里的ping就是执行一段简单的SQL，根据能不能拿到返回结果来判断通不通
                         logger.info("Testing connection " + conn.getRealHashCode() + " ...");
                         Connection realConn = conn.getRealConnection();
                         Statement statement = realConn.createStatement();
