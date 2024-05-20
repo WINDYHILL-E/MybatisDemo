@@ -1,0 +1,11 @@
+package org.yahaha.mybatis.datasource.pooled;
+
+import org.yahaha.mybatis.datasource.unpooled.UnpooledDataSourceFactory;
+
+public class PooledDataSourceFactory extends UnpooledDataSourceFactory {
+
+    public PooledDataSourceFactory() {
+        this.dataSource = new PooledDataSource();
+    }
+
+}
