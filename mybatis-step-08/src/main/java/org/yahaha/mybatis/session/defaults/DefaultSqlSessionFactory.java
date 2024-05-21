@@ -9,6 +9,8 @@ import org.yahaha.mybatis.session.TransactionIsolationLevel;
 import org.yahaha.mybatis.transaction.Transaction;
 import org.yahaha.mybatis.transaction.TransactionFactory;
 
+import java.sql.SQLException;
+
 public class DefaultSqlSessionFactory implements SqlSessionFactory {
 
     private final Configuration configuration;
@@ -26,12 +28,14 @@ public class DefaultSqlSessionFactory implements SqlSessionFactory {
             tx = transactionFactory.newTransaction(configuration.getEnvironment().getDataSource(), TransactionIsolationLevel.READ_COMMITTED, false);
             // 创建执行器
             final Executor executor = configuration.newExecutor(tx);
+            // 创建DefaultSqlSession
             return new DefaultSqlSession(configuration, executor);
         } catch (Exception e) {
             try {
                 assert tx != null;
                 tx.close();
-            } catch (Exception ignore) {}
+            } catch (SQLException ignore) {
+            }
             throw new RuntimeException("Error opening session.  Cause: " + e);
         }
     }
